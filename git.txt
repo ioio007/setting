@@ -1,0 +1,12 @@
+if first time(create a new repository):
+echo "# setting" >> README.md
+git init
+git add README.md
+git commit( -m "commit message" )
+git remote add origin https://github.com/ioio007/setting.git
+git push -u origin master
+
+else:
+git add FileYouWantToCommitAndPush
+git commit( -m "commit message" )
+git push -u origin master
