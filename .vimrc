@@ -123,6 +123,8 @@ filetype indent plugin on     " required!
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
 set backspace=indent,eol,start
+set tabstop=4
+set shiftwidth=4
 
 set nobackup      " do not keep a backup file
 set noswapfile
@@ -142,6 +144,7 @@ set foldlevel=99
 set switchbuf=usetab,newtab
 
 set fo+=Bm        " make chinese autowrap, 'fo'='formatoptions'
+
 
 " set guifont=Menlo\ LG\ S\ Regular\ for\ Powerline:h20
 
@@ -164,6 +167,20 @@ endif
 let g:solarized_termcolors=256
 "colorscheme solarized
 "colorscheme dracula
+
+" 標示游標所在位置的線
+set cursorline 
+" set cursorcolumn " 設定游標所在的行有顏色
+hi cursorline cterm=underline ctermbg=NONE
+
+hi LineNr cterm=bold ctermfg=11 ctermbg=NONE
+" 設定行號為：粗體，前景色為深灰色，沒有背景色
+" hi 為 highlight 指令的縮寫，有同樣效果
+" LineNr line number 的顏色設定
+" cterm 指的是為 color terminal 的環境做設定，其他還有term(一般terminal，例如
+" 透過putty連上的工作環境)、gui
+hi CursorLineNr cterm=bold ctermfg=77 ctermbg=NONE
+" 設定游標所在的行號為：粗體，前景色為綠色，沒有背景色
 
 set showtabline=2 " always display tab page labels
 set number        " show line number
@@ -215,6 +232,7 @@ au FileType javascript setlocal ts=4 noet sw=4 sts=4
 au FileType c,cpp,h       setlocal ts=4 et sw=4 sts=4
 "au FileType cpp       setlocal ts=4 et sw=4 sts=4
 "au FileType h       setlocal ts=4 et sw=4 sts=4
+
 
 
 set modeline
