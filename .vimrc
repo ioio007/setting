@@ -19,6 +19,8 @@ filetype on                   " required!
 filetype plugin on
 
 set rtp+=~/.vim/bundle/vundle/
+" add swift.vim to runtimepath:
+" set runtimepath+=~/.vim/syntax/swift.vim
 call vundle#rc()
 
 " let Vundle manage Vundle, required! 
@@ -29,6 +31,8 @@ Bundle 'gmarik/vundle'
 "Bundle 'MarcWeber/vim-addon-mw-utils'
 "Bundle 'tomtom/tlib_vim'
 "Bundle 'garbas/vim-snipmate'
+"" 讓ultisnips跟YouCompleteMe的tab鍵不會打架...但之前不用也不會打架啊...QQ
+"Bundle 'ervandew/supertab' 
 Bundle 'honza/vim-snippets'
 " ultisnips 跟Snipmate一樣的功能，只是需要用到python，但不會跟YouCompleteMe衝
 " 突
@@ -39,13 +43,16 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " The-NERD-tree 不用離開vim就可以打開其他文件
 Bundle 'The-NERD-tree'
 "let g:NERDTreeWinPos = "right" "將顯示窗口放右邊
-nmap <leader>n :NERDTree<CR> "設置快捷鍵
+" NOTE: <leader> 代表"\"
+" NOTE: control+ww 切換視窗
+nmap <leader>n :NERDTree<CR> "設置快捷鍵 
 let NERDTreeWinSize=30
 " tagbar 可以看到程式碼中的函式和變數，方便追蹤
 Bundle 'majutsushi/tagbar'
 nmap <leader>t :TagbarToggle<CR> "設置快捷鍵
-let g:tagbar_ctags_bin = 'ctags' "設置ctags程序位置
-let g:tagbar_width=30
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags' "設置ctags程序位置
+let g:tagbar_width=26
+
 " vim-airline
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
@@ -53,7 +60,12 @@ Bundle 'vim-airline/vim-airline-themes'
 set laststatus=2
 "" enable powerline-fonts
 let g:airline_powerline_fonts = 1
-"" enable tabline
+"" enable tabline 
+" NOTE: :tabe filename 開啟新分頁(buffers)
+" :bn 跳下一個buffer
+" :bp 跳上一個buffer
+" :b n 跳往第n個buffer
+" :bd 關掉目前buffer
 let g:airline#extensions#tabline#enabled = 1
 "" set left separator
 let g:airline#extensions#tabline#left_sep = ' '
@@ -63,12 +75,34 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "" theme
 let g:airline_theme='wombat'
+
 " YouCompleteMe
 Bundle 'valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+
+" syntastic 語法檢查
+Bundle 'scrooloose/syntastic'
+" recommended settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" swift.vim
+Bundle 'keith/swift.vim'
+let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+source ~/.vim/syntax/swift.vim " Required!!!
+
+" vim-swift
+" Bundle 'toyamarinyon/vim-swift'
+
 
 filetype indent plugin on     " required!
 "
@@ -109,7 +143,7 @@ set switchbuf=usetab,newtab
 
 set fo+=Bm        " make chinese autowrap, 'fo'='formatoptions'
 
-set guifont=Menlo\ LG\ S\ Regular\ for\ Powerline:h20
+" set guifont=Menlo\ LG\ S\ Regular\ for\ Powerline:h20
 
 " set nohlsearch " 搜尋完不會highlight，也可手動用:noh 關閉
 
@@ -118,15 +152,18 @@ set guifont=Menlo\ LG\ S\ Regular\ for\ Powerline:h20
 
 syntax on
 if has('gui_running')
+  let g:airline_powerline_fonts = 1
+  set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h20
+  let g:airline_theme='solarized'
   set background=light
   colorscheme solarized
 else
   set background=dark
+  colorscheme xoria256
 endif
 let g:solarized_termcolors=256
 "colorscheme solarized
 "colorscheme dracula
-colorscheme xoria256
 
 set showtabline=2 " always display tab page labels
 set number        " show line number
@@ -255,17 +292,6 @@ map <CR> :
 
 " Plugin Configurations
 "-----------------------------------------------------------------------
-
-" OmniCppComplete
-set completeopt=menu,menuone
-let OmniCpp_MayCompleteDot=1 "打開.
-let OmniCpp_MayCompleteArrow=1 "打開->
-let OmniCpp_MayCompleteScope=1 "打開::
-let OmniCpp_NamespaceSearch=1 "打開命名空間
-let OmniCpp_GlobalScopeSearch=1
-let OmniCpp_DefaultNamespace=["std"]
-let OmniCpp_ShowPrototypeInAbbr=1 "打開顯示函數原型
-let OmniCpp_SelectFirstItem=2 "自動彈出時自動跳至第一個
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup=1
