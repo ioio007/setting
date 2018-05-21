@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Path to Anaconda
+export PATH=/Users/jpower/anaconda3/bin:$PATH
+
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -98,3 +101,9 @@ export EDITOR=vim
 
 # zsh syntax highlighting setting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# java
+# export NDK_PATH=/Users/jpower/Downloads/android-ndk-r16b
+# export SDK_PATH=/Users/jpower/Library/Android/sdk
+# export PATH=$PATH:$NDK_PATH:$SDK_PATH/platform-tools:$SDK_PATH/tools
+

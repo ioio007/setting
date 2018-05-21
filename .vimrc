@@ -74,14 +74,15 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "" show buffer number
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "" theme
-let g:airline_theme='wombat'
+let g:airline_theme='solarized'
+" let g:airline_solarized_bg='dark'
 
 " YouCompleteMe
-Bundle 'valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+" Bundle 'valloric/YouCompleteMe'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
 " syntastic 語法檢查
 Bundle 'scrooloose/syntastic'
@@ -94,6 +95,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_html_tidy_ignore_errors = ['trimming empty <i>']
 
 " swift.vim
 Bundle 'keith/swift.vim'
@@ -103,6 +105,8 @@ source ~/.vim/syntax/swift.vim " Required!!!
 " vim-swift
 " Bundle 'toyamarinyon/vim-swift'
 
+" colorscheme vim-material
+Bundle 'hzchirs/vim-material'
 
 filetype indent plugin on     " required!
 "
@@ -159,13 +163,14 @@ if has('gui_running')
   set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h20
   let g:airline_theme='solarized'
   set background=light
-  colorscheme solarized
+  " colorscheme solarized
 else
   set background=dark
-  colorscheme xoria256
+  " colorscheme xoria256
 endif
 let g:solarized_termcolors=256
-"colorscheme solarized
+colorscheme solarized
+" colorscheme vim-material
 "colorscheme dracula
 
 " 標示游標所在位置的線
