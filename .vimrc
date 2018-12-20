@@ -15,16 +15,18 @@ set nocompatible               " be iMproved
 "-----------------------------------------------------------------------
 
 "filetype off
-filetype on                   " required!
+filetype off                   " required!
 filetype plugin on
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/vundle.vim
 " add swift.vim to runtimepath:
 " set runtimepath+=~/.vim/syntax/swift.vim
-call vundle#rc()
+" call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle, required! 
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles here:
 " SnipMate 自動補齊，會跟YouCompleteMe衝突
@@ -33,29 +35,29 @@ Bundle 'gmarik/vundle'
 "Bundle 'garbas/vim-snipmate'
 "" 讓ultisnips跟YouCompleteMe的tab鍵不會打架...但之前不用也不會打架啊...QQ
 "Bundle 'ervandew/supertab' 
-Bundle 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
 " ultisnips 跟Snipmate一樣的功能，只是需要用到python，但不會跟YouCompleteMe衝
 " 突
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " The-NERD-tree 不用離開vim就可以打開其他文件
-Bundle 'The-NERD-tree'
+Plugin 'The-NERD-tree'
 "let g:NERDTreeWinPos = "right" "將顯示窗口放右邊
 " NOTE: <leader> 代表"\"
 " NOTE: control+ww 切換視窗
 nmap <leader>n :NERDTree<CR> "設置快捷鍵 
 let NERDTreeWinSize=30
 " tagbar 可以看到程式碼中的函式和變數，方便追蹤
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 nmap <leader>t :TagbarToggle<CR> "設置快捷鍵
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags' "設置ctags程序位置
 let g:tagbar_width=26
 
 " vim-airline
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "" set status line
 set laststatus=2
 "" enable powerline-fonts
@@ -74,17 +76,18 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "" show buffer number
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "" theme
-let g:airline_theme='wombat'
+let g:airline_theme='solarized'
+" let g:airline_solarized_bg='dark'
 
 " YouCompleteMe
-Bundle 'valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+" Bundle 'valloric/YouCompleteMe'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
 " syntastic 語法檢查
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " recommended settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -94,16 +97,20 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_html_tidy_ignore_errors = ['trimming empty <i>']
 
 " swift.vim
-Bundle 'keith/swift.vim'
+Plugin 'keith/swift.vim'
 let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 source ~/.vim/syntax/swift.vim " Required!!!
 
 " vim-swift
 " Bundle 'toyamarinyon/vim-swift'
 
+" colorscheme vim-material
+Plugin 'hzchirs/vim-material'
 
+call vundle#end()             " required!
 filetype indent plugin on     " required!
 "
 " Brief help
@@ -159,13 +166,14 @@ if has('gui_running')
   set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h20
   let g:airline_theme='solarized'
   set background=light
-  colorscheme solarized
+  " colorscheme solarized
 else
   set background=dark
-  colorscheme xoria256
+  " colorscheme xoria256
 endif
 let g:solarized_termcolors=256
-"colorscheme solarized
+" colorscheme solarized
+" colorscheme vim-material
 "colorscheme dracula
 
 " 標示游標所在位置的線

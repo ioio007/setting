@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Path to Anaconda
+# export PATH=/Users/jpower/anaconda3/bin:$PATH
+
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -9,10 +12,28 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+## Powerlevel9k 的相關設定
+# command line 左邊想顯示的內容
+# dir: 所在資料夾名稱
+# dir_writable: 進入沒有寫入權限的資料夾提醒
+# vcs: 版本控制的資訊（version control system的縮寫）
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
+
+# command line 右邊想顯示的內容
+# status: 上一個指令的 return code
+# ram: 顯示目前的 free memory
+# time: 現在時間
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ram time)
+
+# 多資料夾、git資訊 icon
+POWERLEVEL9K_MODE='nerdfont-complete'
+
 
 # Hide Username and Hostname (used by agnoster theme)
-DEFAULT_USER="apple"
+# DEFAULT_USER="apple"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -57,6 +78,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump osx)
+# plugins = (autojump)
 
 # User configuration
 
@@ -94,7 +116,15 @@ export EDITOR=vim
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Autojump setting
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
+# [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 # zsh syntax highlighting setting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# java
+# export NDK_PATH=/Users/jpower/Downloads/android-ndk-r16b
+# export SDK_PATH=/Users/jpower/Library/Android/sdk
+# export PATH=$PATH:$NDK_PATH:$SDK_PATH/platform-tools:$SDK_PATH/tools
+
+# Laravel
+export PATH=/$HOME/.composer/vendor/bin:$PATH
